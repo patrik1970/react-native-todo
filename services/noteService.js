@@ -33,6 +33,23 @@ const noteService = {
     return { data: response };
   },
 
+  // Update an existing note
+  async updateNote(id, text) {
+    if (!text) {
+      return { error: "Note text cannot be empty" };
+    }
+
+    const data = { 
+      text: text,
+    };
+
+    const response = await databaseService.updateDocument(dbId, colId, id, data);
+    if (response?.error) {
+      return { error: response.error };
+    }
+    return { data: response };
+  },
+
   // Delete a note 
   async deleteNote(id) {
     console.log("Delete Note ID:", id);

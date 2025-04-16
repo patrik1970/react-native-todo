@@ -2,7 +2,7 @@ import { View, FlatList } from "react-native-web";
 import NoteItem from "./NoteItem";
 
 
-const NoteList = ({ notes, onDelete }) => {
+const NoteList = ({ notes, onDelete, onEdit }) => {
   
   return (
     <View>
@@ -10,7 +10,7 @@ const NoteList = ({ notes, onDelete }) => {
         data={notes}
         keyExtractor={(item) => item?.$id}
         renderItem={({ item }) => 
-          <NoteItem note={item} onDelete={onDelete} />
+          <NoteItem note={item} onDelete={onDelete} onEdit={onEdit} />
         }
       />
     </View>

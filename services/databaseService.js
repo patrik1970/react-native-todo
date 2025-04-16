@@ -1,7 +1,7 @@
 import { database } from "./appwrite";
 
 const databaseService = {
-  // List all documents in a collection
+  // List all documents
   async listDocuments(dbId, colId) {
     try {
       const response = await database.listDocuments(dbId, colId);
@@ -12,12 +12,22 @@ const databaseService = {
     }
   },
 
-  // Create a new document in a collection
+  // Create a new document 
   async createDocument(dbId, colId, data, id = null) {
     try {
       return await database.createDocument(dbId, colId, id || undefined, data);
     } catch (error) {
       console.error("Error creating document:", error.message);
+      return { error: error.message };
+    }
+  },
+
+  // Update an existing document 
+  async updateDocument(dbId, colId, id, data) {
+    try {
+      return await database.updateDocument(dbId, colId, id, data);
+    } catch (error) {
+      console.error("Error updating document:", error.message);
       return { error: error.message };
     }
   },
