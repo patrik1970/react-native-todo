@@ -1,50 +1,161 @@
-# Welcome to your Expo app 👋
+# Notes App Documentation
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Overview
 
-## Get started
+The **Notes App** is a React Native application built using the [Expo framework](https://expo.dev). It allows users to create, edit, and delete notes. The app integrates with [Appwrite](https://appwrite.io/) for backend services such as authentication and database management.
 
-1. Install dependencies
+## Features
+
+- User authentication (login, registration, and logout).
+- Create, edit, and delete notes.
+- Persistent storage of notes using Appwrite.
+- Responsive design for mobile and web platforms.
+- File-based routing using `expo-router`.
+
+---
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd react-native-todo
+   ```
+
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Set up environment variables:
 
-   ```bash
-    npx expo start
+   Create a .env file in the root directory and add the following variables:
+
+   ```env
+   EXPO_PUBLIC_APPWRITE_ENDPOINT=<Your Appwrite Endpoint>
+   EXPO_PUBLIC_APPWRITE_PROJECT_ID=<Your Appwrite Project ID>
+   EXPO_PUBLIC_APPWRITE_DB_ID=<Your Appwrite Database ID>
+   EXPO_PUBLIC_APPWRITE_COL_NOTES_ID=<Your Appwrite Notes Collection ID>
    ```
 
-In the output, you'll find options to open the app in a
+4. Start the app:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   npx expo start
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## Project Structure
 
-When you're ready, run:
+The project follows a modular structure for better maintainability:
 
-```bash
-npm run reset-project
+```
+react-native-todo/
+├── app/                     # Main application directory
+│   ├── components/          # Reusable components (e.g., NoteList, NoteItem, AddNoteModal)
+│   ├── contexts/            # Context providers (e.g., AuthContext)
+│   ├── notes/               # Notes-related screens and layouts
+│   ├── auth/                # Authentication screens and layouts
+│   ├── _layout.jsx          # Root layout for the app
+│   ├── index.jsx            # Home screen
+├── services/                # Backend services (e.g., Appwrite integration)
+├── assets/                  # Static assets (e.g., images)
+├── .expo/                   # Expo-specific configuration
+├── tsconfig.json            # TypeScript configuration
+├── package.json             # Project dependencies and scripts
+├── README.md                # Project documentation
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## Key Components
 
-To learn more about developing your project with Expo, look at the following resources:
+### 1. **Authentication**
+   - **File:** `contexts/AuthContext.js`
+   - Handles user authentication using Appwrite's `Account` service.
+   - Provides `login`, `register`, and `logout` methods.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 2. **Notes Management**
+   - **File:** `services/noteService.js`
+   - Manages CRUD operations for notes using Appwrite's `Databases` service.
 
-## Join the community
+### 3. **UI Components**
+   - **NoteList:** Displays a list of notes.
+   - **NoteItem:** Represents a single note with edit and delete options.
+   - **AddNoteModal:** Modal for adding new notes.
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Scripts
+
+- **Start the app:**
+
+  ```bash
+  npm start
+  ```
+
+- **Run tests:**
+
+  ```bash
+  npm test
+  ```
+
+- **Reset the project:**
+
+  ```bash
+  npm run reset-project
+  ```
+
+---
+
+## Environment Variables
+
+The app requires the following environment variables to connect to Appwrite:
+
+- `EXPO_PUBLIC_APPWRITE_ENDPOINT`: Appwrite API endpoint.
+- `EXPO_PUBLIC_APPWRITE_PROJECT_ID`: Appwrite project ID.
+- `EXPO_PUBLIC_APPWRITE_DB_ID`: Appwrite database ID.
+- `EXPO_PUBLIC_APPWRITE_COL_NOTES_ID`: Appwrite collection ID for notes.
+
+---
+
+## Deployment
+
+1. Build the app for production:
+
+   ```bash
+   eas build --platform <platform>
+   ```
+
+2. Submit the app to app stores:
+
+   ```bash
+   eas submit --platform <platform>
+   ```
+
+---
+
+## Troubleshooting
+
+- **Authentication Issues:**
+  Ensure the Appwrite endpoint and project credentials are correctly set in the .env file.
+
+- **Notes Not Loading:**
+  Verify that the Appwrite database and collection IDs are correct and that the user has the necessary permissions.
+
+---
+
+## Learn More
+
+- [Expo Documentation](https://docs.expo.dev/)
+- [Appwrite Documentation](https://appwrite.io/docs)
+- [React Native Documentation](https://reactnative.dev/docs/getting-started)
+
+---
+
+## License
+
+This project is licensed under the MIT License.
