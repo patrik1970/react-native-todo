@@ -11,7 +11,7 @@ const config = {
 const client = new Client()
   .setEndpoint(config.endpoint) // Your API Endpoint
   .setProject(config.projectId); // Your project ID
-
+  
 switch (Platform.OS) {
   case 'ios':
     client.setPlatform(process.env.EXPO_PUBLIC_APPWRITE_BUNDLE_ID); // Your iOS platform

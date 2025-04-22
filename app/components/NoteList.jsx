@@ -1,4 +1,4 @@
-import { View, FlatList } from "react-native-web";
+import { View, FlatList } from "react-native";
 import NoteItem from "./NoteItem";
 
 

@@ -2,10 +2,10 @@ import { database } from "./appwrite";
 
 const databaseService = {
   // List all documents
-  async listDocuments(dbId, colId) {
+  async listDocuments(dbId, colId, queries = []) {
     try {
-      const response = await database.listDocuments(dbId, colId);
-      return response.documents || []; // Return an empty array if no documents found
+      const response = await database.listDocuments(dbId, colId, queries);
+      return { data: response.documents || [], error: null }; // Return an empty array if no documents found
     } catch (error) {
       console.error("Error listing documents:", error.message);
       return { error: error.message };
